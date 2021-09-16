@@ -11,7 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-bottom: 2000px;
-  color: #b6b4b4;
+  color: #333;
 }
 
 input{
@@ -19,6 +19,7 @@ input{
   margin: 0;
   border: none;
   border-radius: 5px;
+  outline: 0;
 }
 
 button{
@@ -27,25 +28,26 @@ button{
   font: inherit;
   color: inherit;
   background-color: transparent;
+  cursor: pointer;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-.container {
-  position: relative;
+/* .container {
   min-height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background:linear-gradient(to right, rgba(255, 194, 242, 0.5),rgba(0, 0, 255, 0.5)), url("https://klike.net/uploads/posts/2019-06/1559370578_1.jpg")no-repeat  50%/100% ;
-}
+  background:linear-gradient(to right, rgba(255, 194, 242, 0.5),rgba(0, 0, 255, 0.5)), url("https://klike.net/uploads/posts/2019-06/1559370578_1.jpg")no-repeat  50% / cover ;
+} */
 
+img{
+  width: 100%;
+  max-height: 200px;
+}
 .container-short{
   width: 500px;
-  position: absolute;
-  top: 5%
+  margin: 0 auto;
+  position: relative;
+  top: 200px
 }
 
 .title-todo{
@@ -78,6 +80,8 @@ code {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid;
 }
 
 .todo,.todos-footer {
@@ -85,29 +89,48 @@ code {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border: 1px solid #000;
-  border-radius: 5px;
 }
 
 .todo{
   background-color: aliceblue;
+  border-bottom: 1px solid;
 }
 
-.todo-btn{
+.todo.completed > label {
+  color: #b6b4b4;
+  text-decoration: line-through;
+}
+.todo > label {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.todo-btn {
+  visibility: hidden;
   border: 0;
   background-color: aliceblue;
   font-size: 20px;
   cursor: pointer;
   color: #b6b4b4;
 }
-
-.btn-process{
-display: flex;
-justify-content: center;
+.todo:hover > .todo-btn {
+  visibility: visible;
 }
 
-.btn-process>button:hover{
-  cursor: pointer;
-  background-color: aliceblue;  
-  color: blue;
+.filtering {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.todos-footer {
+  font-size: 16px;
+}
+.todos-footer button {
+  color: #b6b4b4;
+}
+.todos-footer button:hover {
+  color: #333;
+}
+.todos-footer button.active {
+  color: rgb(13, 46, 228);
 }

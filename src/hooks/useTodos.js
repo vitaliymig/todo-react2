@@ -24,16 +24,23 @@ function reducer(state, action) {
             const newTodo = {
                 title: action.payload.title,
                 id: Date.now(),
-                updatedAt: null,
-                status: 1,
+                completed: false
             };
             return [...state, newTodo]
         }
         case 'DELETE': {
+            return state.filter(todo => todo.id !== action.payload)
+        }
+        case 'COMPLETE': {
             const todoIdx = state.findIndex(todo => todo.id === action.payload)
+            const todo = {...state[todoIdx]}
+            todo.completed = true
             const newState = [...state]
-            newState.splice(todoIdx, 1)
+            newState.splice(todoIdx, 1, todo)
             return newState
+        }
+        case 'DELETE_COMPLETED': {
+            return state.filter(todo => !todo.completed)
         }
         default:
             throw new Error(`Unkwnown action.type! (${action.type})`)
