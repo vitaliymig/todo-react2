@@ -1,6 +1,11 @@
 import { useReducer, useEffect, useContext, createContext } from 'react'
 
-const initialState = []
+if (!localStorage.getItem(`todos`)) {
+    localStorage.setItem(`todos`, JSON.stringify([]))
+}
+
+
+const initialState = JSON.parse(localStorage.getItem(`todos`))
 
 const TodosContext = createContext(initialState)
 
@@ -13,6 +18,7 @@ export function TodosProvider({ children }) {
     useEffect(() => {
         console.log('TodosContext');
         console.table(state);
+        localStorage.setItem(`todos`, JSON.stringify(state))
     }, [state])
     return <TodosContext.Provider value={[state, dispatch]}>{children}</TodosContext.Provider>
 }
@@ -46,32 +52,3 @@ function reducer(state, action) {
             throw new Error(`Unkwnown action.type! (${action.type})`)
     }
 }
-
-
-
-
-
-
-
-
-// function red(state,action) {
-//     switch (action.type) {
-//         case `increment`:{ -return state +1
-//         }
-
-//         case `decrement`:{
-//             return state -1
-//         }
-
-//         case `incrementAmount`:{
-//             return state + action.payload
-//         }
-
-//         case `decrementAmount`:{
-//             return state - action.payload
-//         }
-    
-//         default:
-//             throw new Error(`pizdeec na xolodec (${action.type})`)
-//     }
-// }
