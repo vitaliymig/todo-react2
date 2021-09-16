@@ -34,20 +34,21 @@ button{
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-/* .container {
+.container {
+  position: relative;
   min-height: 200px;
   background:linear-gradient(to right, rgba(255, 194, 242, 0.5),rgba(0, 0, 255, 0.5)), url("https://klike.net/uploads/posts/2019-06/1559370578_1.jpg")no-repeat  50% / cover ;
-} */
-
-img{
-  width: 100%;
-  max-height: 200px;
 }
+
+/* img{
+  width:  100%;
+  max-height: 300px;
+} */
 .container-short{
+  position: absolute;
   width: 500px;
-  margin: 0 auto;
-  position: relative;
-  top: 200px
+  top: 20%;
+  left: 35%; 
 }
 
 .title-todo{
